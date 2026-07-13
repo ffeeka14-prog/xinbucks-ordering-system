@@ -1,0 +1,166 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "A coffee or food product available on the Starbucks menu.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the product."
+        },
+        "name": {
+          "type": "string",
+          "description": "Chinese name of the product."
+        },
+        "nameEn": {
+          "type": "string",
+          "description": "English name of the product."
+        },
+        "price": {
+          "type": "number",
+          "description": "Base price of the product."
+        },
+        "description": {
+          "type": "string",
+          "description": "Product description."
+        },
+        "category": {
+          "type": "string",
+          "description": "Category (e.g., espresso, cold_brew, tea, frappuccino, bakery)."
+        },
+        "image": {
+          "type": "string",
+          "description": "Image URL or asset path."
+        }
+      },
+      "required": ["id", "name", "price", "category"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "A customer order containing coffee items and status.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique order ID."
+        },
+        "userId": {
+          "type": "string",
+          "description": "User ID of the customer."
+        },
+        "userName": {
+          "type": "string",
+          "description": "Customer name."
+        },
+        "items": {
+          "type": "array",
+          "description": "List of items in the order, including customizations."
+        },
+        "totalAmount": {
+          "type": "number",
+          "description": "Total price of the order."
+        },
+        "status": {
+          "type": "string",
+          "description": "Order status.",
+          "enum": ["pending", "preparing", "ready", "completed", "cancelled"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the order was placed."
+        },
+        "orderNumber": {
+          "type": "string",
+          "description": "Short, human-readable order number (e.g., SBX-101)."
+        },
+        "notes": {
+          "type": "string",
+          "description": "Additional order instructions."
+        }
+      },
+      "required": ["id", "userId", "items", "totalAmount", "status", "createdAt", "orderNumber"]
+    },
+    "Review": {
+      "title": "Review",
+      "description": "Customer review for a product.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique review ID."
+        },
+        "productId": {
+          "type": "string",
+          "description": "Target product ID."
+        },
+        "userName": {
+          "type": "string",
+          "description": "Reviewer name."
+        },
+        "rating": {
+          "type": "number",
+          "description": "Rating out of 5 stars."
+        },
+        "comment": {
+          "type": "string",
+          "description": "Review content."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the review was written."
+        }
+      },
+      "required": ["id", "productId", "userName", "rating", "comment", "createdAt"]
+    },
+    "User": {
+      "title": "User",
+      "description": "Customer profile and reward stars.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Unique Firebase Auth user ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "User display name."
+        },
+        "email": {
+          "type": "string",
+          "description": "User email address."
+        },
+        "stars": {
+          "type": "number",
+          "description": "Star reward points earned."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "User sign-up timestamp."
+        }
+      },
+      "required": ["uid", "stars"]
+    }
+  },
+  "firestore": {
+    "products": {
+      "schema": "Product",
+      "description": "Global collection of Starbucks coffee and food products."
+    },
+    "orders": {
+      "schema": "Order",
+      "description": "Active and historical coffee orders."
+    },
+    "reviews": {
+      "schema": "Review",
+      "description": "User reviews for coffee products."
+    },
+    "users": {
+      "schema": "User",
+      "description": "User profile, membership level, and Star reward records."
+    }
+  }
+}

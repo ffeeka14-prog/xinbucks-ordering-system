@@ -1,0 +1,6 @@
+{
+  "name": "欣巴克咖啡点单系统",
+  "description": "基于 Firebase 真实数据库的欣巴克咖啡点单与会员积分系统，支持菜单浏览、饮品定制、订单状态实时追踪和咖啡评价。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
